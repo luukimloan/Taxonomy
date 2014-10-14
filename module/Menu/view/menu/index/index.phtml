@@ -1,0 +1,35 @@
+<?php
+
+ $title = 'MENU';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('menu', array('action'=>'add'));?>">Them menu</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Tên</th>
+     <th>Định Tuyến</th>
+     <th>Tham Số</th>
+     <th>Cha</th>
+     <th>Loại</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($menus as $menu): ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($menu->getTen());?></td>
+     <td><?php echo $this->escapeHtml($menu->getDinhTuyen());?></td>
+     <td><?php echo $this->escapeHtml($menu->getThamSo());?></td>
+     <td><?php echo $this->escapeHtml($menu->getTenCha());?></td>
+     <td><?php echo $this->escapeHtml($menu->getLoai());?></td>     
+     <td>
+         <a href="<?php echo $this->url('menu',
+             array('action'=>'edit', 'id' => $menu->getId()));?>">Edit</a>
+         <a href="<?php echo $this->url('menu',
+             array('action'=>'delete', 'id' => $menu->getId()));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>

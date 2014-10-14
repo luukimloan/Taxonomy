@@ -1,0 +1,32 @@
+<?php
+ $title = 'TEST';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('test_router', array('action'=>'add'));?>">Them vd test</a>
+ </p>
+ <table class="table">
+ <tr>
+     
+     <th>Ten</th>
+     <th>Mo Ta</th>
+     <th>Cha</th>
+     <th>&nbsp;</th>     
+ </tr>
+
+ <?php foreach ($tests_return as $test): //$paginator?>
+ <tr>     
+     <td><?php echo $this->escapeHtml($test->getTen());?></td>
+     
+     <td><?php echo $this->escapeHtml($test->getMoTa());?></td>
+     <td><?php echo $this->escapeHtml($test->getTenCha());?></td>     
+     <td>
+         <a href="<?php echo $this->url('test_router',
+             array('action'=>'edit', 'id' => $test->getId()));?>">Sửa</a>
+         <a href="<?php echo $this->url('test_router',
+             array('action'=>'delete', 'id' => $test->getId()));?>">Xóa</a>
+     </td>     
+ </tr>
+ <?php endforeach; ?> 
+ </table>

@@ -1,0 +1,63 @@
+<?php
+
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         &times;
+     </button>
+     <ul><li>')
+     ->setMessageSeparatorString('</li><li>')
+     ->setMessageCloseString('</li></ul></div>');
+
+ echo $flash->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+ echo $flash->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+ echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+ echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+
+ 
+ $title = 'DANH MUC';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('danh_muc/crud', array('action'=>'add'));?>">Them danh muc</a>
+ </p>
+<form method="post">
+ <table class="table">
+ <tr>
+     
+     <th>Ten</th>
+     <th>Mo Ta</th>
+     <th>Cha</th>
+     <th>&nbsp;</th>
+     <th>Xóa</th>
+ </tr>
+ <?php //var_dump($danhMucs); ?>
+ <?php foreach ($danhMucs as $danhMuc): //$paginator?>
+ <tr>     
+     <td><?php echo str_repeat("___",$danhMuc->getCap()).$this->escapeHtml($danhMuc->getTen());?></td>
+     
+     <td><?php echo $this->escapeHtml($danhMuc->getMoTa());?></td>
+     <td><?php echo $this->escapeHtml($danhMuc->getTenCha());?></td>     
+     <td>
+         <a href="<?php echo $this->url('danh_muc/crud',
+             array('action'=>'edit', 'id' => $danhMuc->getId()));?>">Edit</a>
+         <a href="<?php echo $this->url('danh_muc/crud',
+             array('action'=>'delete', 'id' => $danhMuc->getId()));?>">Delete</a>
+     </td>
+     <td>
+        <input type="checkbox" name="chk[]" value="<?php echo $danhMuc->getId();?>"></input>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ <tr>
+    <td colspan="5">        
+        <input type="submit" name="del" value="Xóa">
+    </td>    
+</tr>
+ </table>
+</form>
+
+ <?php /*echo $this->paginationControl($this->paginator,
+                                    'Sliding',
+                                    'paginator/my_paginator', array('route' => 'danh_muc/paginator'));*/ //paginator/my-paginatortrong template_map; route cha->con?>

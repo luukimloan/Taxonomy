@@ -1,0 +1,58 @@
+<?php
+
+ $title = 'Add';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <div class="row">
+ <div class="col-lg-6">
+ <?php
+ $form->setAttribute('action', $this->url('menu', array('action' => 'add')));
+ $form->setAttribute('role','form');
+ $form->prepare();
+
+ echo $this->form()->openTag($form);
+ echo $this->formHidden($form->get('id'));?>
+
+<div class"form-group">
+ <?php $ten=$form->get('ten');?>
+ <?php $ten->setAttribute('class','form-control'); ?>
+ <label><?php echo $ten->getLabel(); ?></label>
+ <?php echo $this->formElement($ten); ?>
+</div>
+
+<div class"form-group">
+ <?php $dinhTuyen=$form->get('dinhTuyen');?>
+ <?php $dinhTuyen->setAttribute('class','form-control'); ?>
+ <label><?php echo $dinhTuyen->getLabel(); ?></label>
+ <?php echo $this->formElement($dinhTuyen); ?> 
+</div>
+
+<div class"form-group">
+ <?php $thamSo=$form->get('thamSo');?>
+ <?php $thamSo->setAttribute('class','form-control'); ?>
+ <label><?php echo $thamSo->getLabel(); ?></label>
+ <?php echo $this->formElement($thamSo); ?> 
+</div>
+
+<div class"form-group">
+ <?php $cha=$form->get('cha');?>
+ <?php $cha->setAttribute('class','form-control'); ?>
+ <label><?php echo $cha->getLabel(); ?></label>
+ <?php echo $this->formElement($cha); ?>
+</div>
+
+<div class"form-group">
+ <?php $loai=$form->get('loai');?>
+ <?php $loai->setAttribute('class','form-control'); ?>
+ <label><?php echo $loai->getLabel(); ?></label>
+ <?php echo $this->formElement($loai); ?>
+</div>
+ 
+<?php 
+ $submit=$form->get('submit');
+ $submit->setValue('Thêm');
+ echo $this->formSubmit($submit);
+ echo $this->form()->closeTag();?>
+</div>
+</div>
